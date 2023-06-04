@@ -3,7 +3,9 @@ services:
   spark-master:
     image: spark-docker-image-3.4.0:latest
     ports:
+      - "9000:9000"
       - "4040:4040"
+      - "4041:4041"
       - "7077:7077"
     volumes:
        - ./apps:/opt/spark-apps
@@ -14,7 +16,7 @@ services:
   spark-worker-a:
     image: spark-docker-image-3.4.0:latest
     ports:
-      - "4041:4040"
+      - "9001:9000"
       - "17000:7000"
     depends_on:
       - spark-master
@@ -33,7 +35,7 @@ services:
   spark-worker-b:
     image: spark-docker-image-3.4.0:latest
     ports:
-      - "4042:4040"
+      - "9002:9000"
       - "17001:7000"
     depends_on:
       - spark-master
