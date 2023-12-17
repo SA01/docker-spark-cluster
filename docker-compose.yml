@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   spark-master:
-    image: spark-docker-image-3.4.0:latest
+    image: spark-docker-image-3.5.0:latest
     ports:
       - "9000:9000"
       - "4040:4040"
@@ -14,7 +14,7 @@ services:
       - SPARK_LOCAL_IP=spark-master
       - SPARK_WORKLOAD=master
   spark-worker-a:
-    image: spark-docker-image-3.4.0:latest
+    image: spark-docker-image-3.5.0:latest
     ports:
       - "9001:9000"
       - "17000:7000"
@@ -33,7 +33,7 @@ services:
        - ./apps:/opt/spark-apps
        - ./data:/opt/spark-data
   spark-worker-b:
-    image: spark-docker-image-3.4.0:latest
+    image: spark-docker-image-3.5.0:latest
     ports:
       - "9002:9000"
       - "17001:7000"

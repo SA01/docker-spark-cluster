@@ -1,13 +1,13 @@
-FROM amazoncorretto:8u372 as builder
+FROM amazoncorretto:8u392 as builder
 
 # Add Dependencies for PySpark
-RUN yum -y update && yum install -y curl vim wget software-properties-common ssh net-tools ca-certificates python3 python3-pip python3-numpy python3-matplotlib python3-scipy python3-pandas python3-simpy tar procps hostname
+RUN yum -y update && yum install -y curl vim software-properties-common ssh net-tools ca-certificates tar procps hostname gcc openssl-devel bzip2-devel libffi-devel zlib-devel wget make 
 
-RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1
+RUN wget https://www.python.org/ftp/python/3.11.7/Python-3.11.7.tgz && tar -xf Python-3.11.7.tgz && cd Python-3.11.7 && ./configure --enable-optimizations && make install
 
 # Fix the value of PYTHONHASHSEED
 # Note: this is needed when you use Python 3.3 or greater
-ENV SPARK_VERSION=3.4.0 \
+ENV SPARK_VERSION=3.5.0 \
 HADOOP_VERSION=3 \
 SPARK_HOME=/opt/spark \
 PYTHONHASHSEED=1
