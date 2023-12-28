@@ -3,7 +3,7 @@ FROM amazoncorretto:8u392 as builder
 # Add Dependencies for PySpark
 RUN yum -y update && yum install -y curl vim software-properties-common ssh net-tools ca-certificates tar procps hostname gcc openssl-devel bzip2-devel libffi-devel zlib-devel wget make 
 
-RUN wget https://www.python.org/ftp/python/3.11.7/Python-3.11.7.tgz && tar -xf Python-3.11.7.tgz && cd Python-3.11.7 && ./configure --enable-optimizations && make install
+RUN wget https://www.python.org/ftp/python/3.9.13/Python-3.9.13.tgz && tar -xf Python-3.9.13.tgz && cd Python-3.9.13 && ./configure --enable-optimizations && make install
 
 # Fix the value of PYTHONHASHSEED
 # Note: this is needed when you use Python 3.3 or greater
